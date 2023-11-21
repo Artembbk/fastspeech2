@@ -1,0 +1,6 @@
+*.npy
+*.wav
+*.csv
+*.txt
+*.zip
+*.pt
