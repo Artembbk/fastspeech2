@@ -52,11 +52,13 @@ def main():
     logger = WanDBWriter(train_config)
 
     trainer = Trainer(
-        moodel=model,
+        model=model,
         training_loader=training_loader,
+        optimizer=optimizer,
         scheduler=scheduler,
         logger=logger,
         fastspeech_loss=fastspeech_loss,
+        train_config=train_config
     )
 
     trainer.train()
