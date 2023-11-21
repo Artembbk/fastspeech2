@@ -1,4 +1,5 @@
 from torch import nn
+import torch.nn.functional as F
 
 class PositionwiseFeedForward(nn.Module):
     ''' A two-feed-forward-layer module '''

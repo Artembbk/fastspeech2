@@ -2,7 +2,7 @@ from torch import nn
 from modules.durationpredictor import DurationPredictor
 import torch
 from utils import create_alignment
-
+import torch.nn.functional as F
 
 class LengthRegulator(nn.Module):
     """ Length Regulator """
