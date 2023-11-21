@@ -29,7 +29,7 @@ def main():
         num_workers=0
     )
 
-    model = FastSpeech(model_config)
+    model = FastSpeech(model_config, mel_config)
     model = model.to(train_config.device)
 
     fastspeech_loss = FastSpeechLoss()
