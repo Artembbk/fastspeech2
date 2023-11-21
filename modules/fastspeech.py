@@ -1,10 +1,8 @@
 from torch import nn
 import torch
-from encoder import Encoder
-from lengthregulator import LengthRegulator
-from decoder import Decoder
-
-
+from modules.encoder import Encoder
+from modules.lengthregulator import LengthRegulator
+from modules.decoder import Decoder
 
 class FastSpeech(nn.Module):
     """ Fast Speech """
