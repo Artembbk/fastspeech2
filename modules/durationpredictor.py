@@ -1,5 +1,5 @@
 from torch import nn
-from trasnpose import Transpose
+from modules.trasnpose import Transpose
 
 class DurationPredictor(nn.Module):
     """ Duration Predictor """
