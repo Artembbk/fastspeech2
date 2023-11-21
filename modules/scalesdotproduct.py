@@ -30,4 +30,4 @@ class ScaledDotProductAttention(nn.Module):
         # Weight values by the attention scores
         output = torch.bmm(attn, v)  # (batch_size * n_heads) x seq_len x hidden_size
         
-        return output
+        return output, attn
