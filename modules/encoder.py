@@ -24,7 +24,7 @@ class Encoder(nn.Module):
             padding_idx=model_config.PAD
         )
 
-        self.layer_stack = nn.ModuleList([FFTBlock(
+        self.layer_stack = nn.ModuleList([FFTBlock(model_config,
             model_config.encoder_dim,
             model_config.encoder_conv1d_filter_size,
             model_config.encoder_head,
