@@ -1,5 +1,5 @@
 from torch import nn
-from durationpredictor import DurationPredictor
+from modules.durationpredictor import DurationPredictor
 import torch
 from utils import create_alignment
 

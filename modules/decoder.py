@@ -1,7 +1,6 @@
 from torch import nn
-from fftblock import FFTBlock
+from modules.fftblock import FFTBlock
 import torch
-
 
 class Decoder(nn.Module):
     """ Decoder """

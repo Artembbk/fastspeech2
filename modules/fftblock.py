@@ -1,6 +1,6 @@
 import torch
-from multiheadattention import MultiHeadAttention
-from pointwisefeedforward import PositionwiseFeedForward
+from modules.multiheadattention import MultiHeadAttention
+from modules.pointwisefeedforward import PositionwiseFeedForward
 
 class FFTBlock(torch.nn.Module):
     """FFT Block"""
