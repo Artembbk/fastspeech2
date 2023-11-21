@@ -4,7 +4,7 @@ import torch.nn.functional as F
 import numpy as np
 from tqdm import tqdm
 from time import time
-from utils import text_to_sequence
+from text import text_to_sequence
 
 import os
 
