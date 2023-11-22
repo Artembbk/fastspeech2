@@ -62,8 +62,8 @@ def main(model, results, waveglow_path):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('model', type=str)
-    parser.add_argument('results', type=str)
-    parser.add_argument('waveglow', type=str)
+    parser.add_argument('--model', type=str)
+    parser.add_argument('--results', type=str)
+    parser.add_argument('--waveglow', type=str)
     args = parser.parse_args()
     main(args.model, args.results, args.waveglow)
