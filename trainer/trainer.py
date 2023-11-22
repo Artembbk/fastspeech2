@@ -41,7 +41,6 @@ class Trainer():
                                                                 mel_max_length=max_mel_len,
                                                                 length_target=duration)
                     
-                    print("out", mel_output, duration_predictor_output)
 
                     # Calc Loss
                     mel_loss, duration_loss = self.fastspeech_loss(mel_output,
