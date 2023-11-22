@@ -36,8 +36,8 @@ def get_data(train_config):
 
 
 
-def main(model, results):
-    WaveGlow = utils.get_WaveGlow()
+def main(model, results, waveglow_path):
+    WaveGlow = utils.get_WaveGlow(waveglow_path)
     WaveGlow = WaveGlow.cuda()
 
     model.load_state_dict(torch.load(model, map_location='cuda:0')['model'])
@@ -52,17 +52,18 @@ def main(model, results):
             os.makedirs(results, exist_ok=True)
             
             audio.tools.inv_mel_spec(
-                mel, f"{results}/s={speed}_{i}.wav"
+                mel, os.path.join(results, "s={speed}_{i}.wav")
             )
             
             waveglow.inference.inference(
                 mel_cuda, WaveGlow,
-                f"{results}/s={speed}_{i}_waveglow.wav"
+                os.path.join(results, f"s={speed}_{i}_waveglow.wav")
             )
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('model', type=str)
     parser.add_argument('results', type=str)
+    parser.add_argument('waveglow', type=str)
     args = parser.parse_args()
-    main(args.model, args.results)
+    main(args.model, args.results, args.waveglow)
