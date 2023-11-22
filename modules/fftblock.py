@@ -22,7 +22,7 @@ class FFTBlock(torch.nn.Module):
     def forward(self, enc_input, non_pad_mask=None, slf_attn_mask=None):
         print("slf_atttn: ", slf_attn_mask)
         enc_output, enc_slf_attn = self.slf_attn(
-            enc_input, enc_input, enc_input)
+            enc_input, enc_input, enc_input, mask=slf_attn_mask)
         print("enc_output: ", enc_output)
         
         if non_pad_mask is not None:

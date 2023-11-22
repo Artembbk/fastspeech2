@@ -19,7 +19,7 @@ class ScaledDotProductAttention(nn.Module):
         
         # Apply mask (if provided)
         if mask is not None:
-            attn = attn.masked_fill(mask == 0, float('-inf'))  # Set masked positions to -inf for softmax
+            attn = attn.masked_fill(mask, float('-inf'))  # Set masked positions to -inf for softmax
         
         # Perform softmax to get attention weights
         attn = self.softmax(attn)  # (batch_size * n_heads) x seq_len x seq_len
