@@ -36,11 +36,11 @@ def get_data(train_config):
 
 
 
-def main():
+def main(model, results):
     WaveGlow = utils.get_WaveGlow()
     WaveGlow = WaveGlow.cuda()
 
-    model.load_state_dict(torch.load(args.model, map_location='cuda:0')['model'])
+    model.load_state_dict(torch.load(model, map_location='cuda:0')['model'])
     model = model.eval()
 
 
@@ -49,15 +49,15 @@ def main():
         for i, phn in tqdm(enumerate(data_list)):
             mel, mel_cuda = synthesis(model, phn, speed)
             
-            os.makedirs(args.results, exist_ok=True)
+            os.makedirs(results, exist_ok=True)
             
             audio.tools.inv_mel_spec(
-                mel, f"{args.results}/s={speed}_{i}.wav"
+                mel, f"{results}/s={speed}_{i}.wav"
             )
             
             waveglow.inference.inference(
                 mel_cuda, WaveGlow,
-                f"{ args.results}/s={speed}_{i}_waveglow.wav"
+                f"{results}/s={speed}_{i}_waveglow.wav"
             )
 
 if __name__ == '__main__':

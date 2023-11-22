@@ -4,3 +4,6 @@
 *.txt
 *.zip
 *.pt
+*.pyc
+*.patch
+*.tar
