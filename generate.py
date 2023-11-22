@@ -44,7 +44,6 @@ def main(model_path, results, waveglow_path):
 
     mel_config = MelSpectrogramConfig()
     train_config = TrainConfig()
-    print("hmhmhmh", train_config.device)
     model_config = FastSpeechConfig()
     model = FastSpeech(model_config, mel_config)
     model.load_state_dict(torch.load(model_path, map_location='cuda:0')['model'])
@@ -54,7 +53,7 @@ def main(model_path, results, waveglow_path):
     data_list = get_data(train_config)
     for speed in [0.8, 1., 1.3]:
         for i, phn in tqdm(enumerate(data_list)):
-            mel, mel_cuda = synthesis(model, phn, speed)
+            mel, mel_cuda = synthesis(model, phn, speed, train_config)
             
             os.makedirs(results, exist_ok=True)
             
