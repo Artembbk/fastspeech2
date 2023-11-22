@@ -7,6 +7,8 @@ import argparse
 import numpy as np
 import os
 from tqdm import tqdm
+from modules.fastspeech import FastSpeech
+from configs.config import MelSpectrogramConfig, FastSpeechConfig
 
 def synthesis(model, phn, alpha=1.0, train_config=None):
     text = np.array(phn)
@@ -36,11 +38,14 @@ def get_data(train_config):
 
 
 
-def main(model, results, waveglow_path):
+def main(model_path, results, waveglow_path):
     WaveGlow = utils.get_WaveGlow(waveglow_path)
     WaveGlow = WaveGlow.cuda()
 
-    model.load_state_dict(torch.load(model, map_location='cuda:0')['model'])
+    mel_config = MelSpectrogramConfig()
+    model_config = FastSpeechConfig()
+    model = FastSpeech(model_config, mel_config)
+    model.load_state_dict(torch.load(model_path, map_location='cuda:0')['model'])
     model = model.eval()
 
 
