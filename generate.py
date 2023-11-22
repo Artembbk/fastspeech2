@@ -47,7 +47,7 @@ def main(model_path, results, waveglow_path):
     model_config = FastSpeechConfig()
     model = FastSpeech(model_config, mel_config)
     model.load_state_dict(torch.load(model_path, map_location='cuda:0')['model'])
-    model = model.to(train_config.device_config)
+    model = model.to(train_config.device)
     model = model.eval()
 
 
