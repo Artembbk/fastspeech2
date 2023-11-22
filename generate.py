@@ -3,6 +3,7 @@ import text
 import audio
 import utils
 import torch
+import argparse
 import numpy as np
 import os
 from tqdm import tqdm
@@ -39,7 +40,7 @@ def main():
     WaveGlow = utils.get_WaveGlow()
     WaveGlow = WaveGlow.cuda()
 
-    model.load_state_dict(torch.load('../model_new/checkpoint_225000.pth.tar', map_location='cuda:0')['model'])
+    model.load_state_dict(torch.load(args.model, map_location='cuda:0')['model'])
     model = model.eval()
 
 
@@ -48,16 +49,20 @@ def main():
         for i, phn in tqdm(enumerate(data_list)):
             mel, mel_cuda = synthesis(model, phn, speed)
             
-            os.makedirs("results", exist_ok=True)
+            os.makedirs(args.results, exist_ok=True)
             
             audio.tools.inv_mel_spec(
-                mel, f"results/s={speed}_{i}.wav"
+                mel, f"{args.results}/s={speed}_{i}.wav"
             )
             
             waveglow.inference.inference(
                 mel_cuda, WaveGlow,
-                f"results/s={speed}_{i}_waveglow.wav"
+                f"{ args.results}/s={speed}_{i}_waveglow.wav"
             )
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('model', type=str)
+    parser.add_argument('results', type=str)
+    args = parser.parse_args()
+    main(args.model, args.results)
