@@ -33,6 +33,7 @@ class FastSpeech(nn.Module):
 
     def forward(self, src_seq, src_pos, mel_pos=None, mel_max_length=None, length_target=None, alpha=1.0):
         encoder_output, _ = self.encoder(src_seq, src_pos)
+        print("enc", encoder_output)
 
         if self.training:
             length_regulator_output, duration_predictor_output = self.length_regulator(encoder_output,
