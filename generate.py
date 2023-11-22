@@ -44,7 +44,7 @@ def main(model_path, results, waveglow_path):
 
     mel_config = MelSpectrogramConfig()
     train_config = TrainConfig()
-    print(train_config)
+    print("hmhmhmh", train_config)
     model_config = FastSpeechConfig()
     model = FastSpeech(model_config, mel_config)
     model.load_state_dict(torch.load(model_path, map_location='cuda:0')['model'])
