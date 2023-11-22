@@ -57,12 +57,14 @@ class Encoder(nn.Module):
         
         # -- Forward
         enc_output = self.src_word_emb(src_seq) + self.position_enc(src_pos)
+        print("enc", enc_output)
 
         for enc_layer in self.layer_stack:
             enc_output, enc_slf_attn = enc_layer(
                 enc_output,
                 non_pad_mask=non_pad_mask,
                 slf_attn_mask=slf_attn_mask)
+            print("enc_layer", enc_output)
             if return_attns:
                 enc_slf_attn_list += [enc_slf_attn]
         
